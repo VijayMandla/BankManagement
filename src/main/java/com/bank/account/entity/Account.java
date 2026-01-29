@@ -1,18 +1,16 @@
 package com.bank.account.entity;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import com.bank.account.enumdata.AccountStatus;
 import com.bank.account.enumdata.AccountType;
 import com.bank.customer.entity.Customer;
+import com.bank.transactions.entity.Transaction;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
+
+import jakarta.persistence.*;
 
 import lombok.*;
 
@@ -29,6 +27,8 @@ public class Account {
 
 	@Column(unique = true, nullable = false)
 	private String acountNumber;
+	
+	private BigDecimal balance;
 
 	@Enumerated(EnumType.STRING)
 	private AccountStatus status;
@@ -41,4 +41,7 @@ public class Account {
 	@JoinColumn(name = "customer_id", nullable = false)
 
 	private Customer customer;
+	
+	@OneToMany(mappedBy = "account")
+	private List<Transaction>  transactions;
 }

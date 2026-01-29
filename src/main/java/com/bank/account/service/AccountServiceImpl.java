@@ -114,7 +114,7 @@ public class AccountServiceImpl implements AccountService {
 		return "ACC" + System.currentTimeMillis() + (int) (Math.random() * 100);
 	}
 
-	private AccountResponseDto mapToResponseDto(Account account) {
+	public AccountResponseDto mapToResponseDto(Account account) {
 
 		AccountResponseDto response = new AccountResponseDto();
 		response.setId(account.getId());
